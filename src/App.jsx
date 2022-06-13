@@ -1,13 +1,10 @@
-import { useState } from 'react'
-import logo from './logo.svg'
+import DropZone from './components/DropZone';
 import './App.css'
-
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div className="App">
-     
+     <DropZone/>
     </div>
   )
 }
