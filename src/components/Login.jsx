@@ -1,9 +1,23 @@
-import { useNavigate } from 'react-router-dom';
-
+import { useState } from "react";
 import { Form, Button, Modal, Stack } from "react-bootstrap";
-const Login = (props) => {
-    const navigateTo = useNavigate();
+import { useNavigate } from 'react-router-dom';
+import useDrop from "../hooks/useDrop";
 
+const Login = (props) => {
+    const [email,setEmail]= useState();
+    const [password,setPassword]= useState();
+    const navigateTo = useNavigate();
+    const {setUser} = useDrop();
+    
+    const handelsubmit = event => {
+        event.preventDefault();
+        setUser({
+            email:email,
+            password:password,
+            login:true
+        })
+        props.onHide();
+    }
     return (
         <>
             <Modal
@@ -14,13 +28,13 @@ const Login = (props) => {
             >
                 <Modal.Header closeButton>
                 </Modal.Header>
-                <Modal.Body closeButton>
-                    <Form>
+                <Modal.Body>
+                    <Form onSubmit={handelsubmit}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Control type="email" placeholder="Email" />
+                            <Form.Control type="email" placeholder="Email" onChange={(e)=>setEmail(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Control type="password" placeholder="Password" />
+                            <Form.Control type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}  />
                         </Form.Group>
                         <Stack  gap={2}>
                             <Button variant="success" type="submit"> Login </Button>

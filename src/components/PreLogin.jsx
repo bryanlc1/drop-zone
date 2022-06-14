@@ -7,7 +7,6 @@ import { useState } from 'react';
 const PreLogin = () => {
     const [modalShow, setModalShow] = useState(false)
     const gotoLogin = () => {
-        console.log('hola')
         setModalShow(true);
     }
     return (
