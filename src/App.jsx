@@ -1,11 +1,16 @@
 import DropZone from './components/DropZone';
+import PreLogin from './components/PreLogin';
 import './App.css'
+import { Container, Row } from 'react-bootstrap';
 function App() {
 
   return (
-    <div className="App">
+    <Container>
+      <Row className="App">
      <DropZone/>
-    </div>
+     <PreLogin/>
+    </Row>
+    </Container>
   )
 }
 

@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Button } from 'react-bootstrap';
+import { Button,Row,Col} from 'react-bootstrap';
 import '../styles/DropZone.css'
 
 const DropZone = () => {
     const [files, setFiles] = useState([]);
+    const [rejectedFiles,setRejectedFiles]= useState([]);
+
     const { getRootProps, getInputProps } = useDropzone({
         accept: {
-            'image/*': ['.png', '.gif', '.jpeg', '.jpg'],
-            'application/pdf': ['.pdf']
+            'image/*':['.png','.jpg'],
+            'application/pdf':['.pdf'],
         },
         onDrop: (acceptedFiles) => {
             setFiles(
@@ -16,8 +18,17 @@ const DropZone = () => {
                     preview: URL.createObjectURL(file)
                 }))
             )
-
             console.log(acceptedFiles)
+        },
+        onDropRejected:(rejectFiles)=>{
+            console.log(rejectFiles)
+            setRejectedFiles(
+                rejectFiles.map(({file}) => Object.assign(file, {
+                    preview: URL.createObjectURL(file)
+                }))
+            )
+            console.log(rejectFiles)
+
         }
     })
 
@@ -25,8 +36,9 @@ const DropZone = () => {
     console.log(files.length)
     const notCurrentFiles = files?.length === 0;
     return (
-        <div className='contDrop'>
-            <div className='dropArea' {...getRootProps()} >
+        <>
+        <Col xs={{order:1}} lg={{order:0}} className='contDrop order-xs-last'>
+            <div  className='dropArea' {...getRootProps()} >
                 <input {...getInputProps()} />
 
                 {notCurrentFiles && <p className="textDrop">Sube tus archivos</p>}
@@ -49,7 +61,10 @@ const DropZone = () => {
                 />
                 Subir archivos
             </Button>
-        </div>
+        </Col>
+
+        </>
+        
 
     )
 }

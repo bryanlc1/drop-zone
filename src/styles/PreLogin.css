@@ -1,0 +1,22 @@
+.welcome{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #39424e;
+    margin-bottom: 30px;
+}
+
+.contWelcome{
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btonLogin{
+    background-color: transparent;
+    color: white;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 5px;
+}
