@@ -1,15 +1,11 @@
-import DropZone from './components/DropZone';
-import PreLogin from './components/PreLogin';
-import './App.css'
-import { Container, Row } from 'react-bootstrap';
+
+import { Container } from 'react-bootstrap';
+import { Outlet } from 'react-router-dom';
 function App() {
 
   return (
     <Container>
-      <Row  className="App">
-     <DropZone/>
-     <PreLogin/>
-    </Row>
+     <Outlet/>
     </Container>
   )
 }

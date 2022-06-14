@@ -32,13 +32,10 @@ const DropZone = () => {
 
         }
     })
-    console.log('rejected', rejectedFiles.length)
 
     const currentFiles = files?.length !== 0 && rejectedFiles?.length === 0;
     const notCurrentFiles = files?.length === 0 && rejectedFiles?.length === 0;
     const errorFiles = rejectedFiles?.length !== 0
-
-
 
     return (
         <>
@@ -77,10 +74,7 @@ const DropZone = () => {
                     Subir archivos
                 </Button>
             </Col>
-
         </>
-
-
     )
 }
 

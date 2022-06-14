@@ -1,0 +1,8 @@
+.contForm{
+    display: flex;
+    justify-content: center;
+}
+
+.formRegister{
+    width: 400px;
+}
