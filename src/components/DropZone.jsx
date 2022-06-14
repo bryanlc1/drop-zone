@@ -1,16 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Button,Row,Col} from 'react-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
 import '../styles/DropZone.css'
+import ModalError from './ModalError';
 
 const DropZone = () => {
     const [files, setFiles] = useState([]);
-    const [rejectedFiles,setRejectedFiles]= useState([]);
+    const [rejectedFiles, setRejectedFiles] = useState([]);
 
     const { getRootProps, getInputProps } = useDropzone({
         accept: {
-            'image/*':['.png','.jpg'],
-            'application/pdf':['.pdf'],
+            'image/*': ['.png', '.jpg'],
+            'application/pdf': ['.pdf'],
         },
         onDrop: (acceptedFiles) => {
             setFiles(
@@ -20,10 +21,10 @@ const DropZone = () => {
             )
             console.log(acceptedFiles)
         },
-        onDropRejected:(rejectFiles)=>{
+        onDropRejected: (rejectFiles) => {
             console.log(rejectFiles)
             setRejectedFiles(
-                rejectFiles.map(({file}) => Object.assign(file, {
+                rejectFiles.map(({ file }) => Object.assign(file, {
                     preview: URL.createObjectURL(file)
                 }))
             )
@@ -31,40 +32,54 @@ const DropZone = () => {
 
         }
     })
+    console.log('rejected', rejectedFiles.length)
 
-    const currentFiles = files?.length !== 0;
-    console.log(files.length)
-    const notCurrentFiles = files?.length === 0;
+    const currentFiles = files?.length !== 0 && rejectedFiles?.length === 0;
+    const notCurrentFiles = files?.length === 0 && rejectedFiles?.length === 0;
+    const errorFiles = rejectedFiles?.length !== 0
+
+
+
     return (
         <>
-        <Col xs={{order:1}} lg={{order:0}} className='contDrop order-xs-last'>
-            <div  className='dropArea' {...getRootProps()} >
-                <input {...getInputProps()} />
+            <Col xs={{ order: 1 }} lg={{ order: 0 }} className='contDrop order-xs-last'>
+                {errorFiles ?
+                    <div className='dropArea'  >
+                        <ModalError reset={() => setRejectedFiles([])} />
 
-                {notCurrentFiles && <p className="textDrop">Sube tus archivos</p>}
+                    </div>
+                    :
+                    <div className='dropArea' {...getRootProps()} >
+                        <input {...getInputProps()} />
 
-                {currentFiles && (
-                    <>
-                        <p className="textDrop">
-                            Archivos,
-                            {files.map(file => (
-                                ` ${file.name}, `
-                            ))}
-                            subidos correctamente
-                        </p>
-                    </>
-                )}
-            </div>
-            <Button variant="success" {...getRootProps()}>
-                <input
-                    {...getInputProps()}
-                />
-                Subir archivos
-            </Button>
-        </Col>
+                        {notCurrentFiles && <p className="textDrop">Sube tus archivos</p>}
+
+                        {currentFiles && (
+                            <>
+                                <p className="textDrop">
+                                    Archivos,
+                                    {files.map(file => (
+                                        ` ${file.name}, `
+                                    ))}
+                                    subidos correctamente
+                                </p>
+                            </>
+                        )}
+
+                    </div>
+
+                }
+
+                <Button variant="success" {...getRootProps()}>
+                    <input
+                        {...getInputProps()}
+                    />
+                    Subir archivos
+                </Button>
+            </Col>
 
         </>
-        
+
 
     )
 }

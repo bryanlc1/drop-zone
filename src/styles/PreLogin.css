@@ -16,7 +16,11 @@
 .btonLogin{
     background-color: transparent;
     color: white;
-    padding: 10px;
     border: 1px solid;
     border-radius: 5px;
+}
+
+.btonLogin span{
+    margin-right: 50px;
+    font-size: 25px;
 }

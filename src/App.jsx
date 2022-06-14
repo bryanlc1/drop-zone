@@ -6,7 +6,7 @@ function App() {
 
   return (
     <Container>
-      <Row className="App">
+      <Row  className="App">
      <DropZone/>
      <PreLogin/>
     </Row>
