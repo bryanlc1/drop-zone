@@ -15,6 +15,15 @@
     align-items: center;
     height: 400px;    
 }
+
+.btonLogin{
+    background-color: transparent;
+    padding:10px;
+    color: white;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
 .contDrop{
     display: flex;
     flex-direction: column;

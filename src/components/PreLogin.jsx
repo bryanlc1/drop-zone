@@ -1,8 +1,9 @@
-import {useState } from 'react';
-import '../styles/PreLogin.css';
-import { FaGoogle } from "react-icons/fa";
-import { Col } from "react-bootstrap";
+import { useState } from 'react';
+
 import Login from './Login';
+
+import { Col } from "react-bootstrap";
+import '../styles/PreLogin.css';
 
 const PreLogin = () => {
     const [modalShow, setModalShow] = useState(false);
@@ -10,7 +11,7 @@ const PreLogin = () => {
     const gotoLogin = () => {
         setModalShow(true);
     }
-    
+
     return (
         <Col xs={12} lg={4} className='contWelcome'>
             <div className="welcome">
@@ -18,7 +19,6 @@ const PreLogin = () => {
                 <p>Para subir tus archivos a traves de drive, puedes hacer logina traves de google</p>
             </div>
             <button className='btonLogin' onClick={() => gotoLogin()}>Login</button>
-            <button className='btonLogin'><span><FaGoogle /></span> Login con Google</button>
 
             <Login
                 show={modalShow}

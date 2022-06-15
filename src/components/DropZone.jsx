@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
-
+import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Button, Row, Col, Stack } from 'react-bootstrap';
-import '../styles/DropZone.css'
+
 import useDrop from '../hooks/useDrop';
 import ModalError from './ModalError';
 import BtonGDrive from './BtonGDrive';
 
+import { Button, Col, Stack } from 'react-bootstrap';
+import '../styles/DropZone.css'
+
+
 const DropZone = () => {
     const { Files, setFiles } = useDrop();
-    //const [files, setFiles] = useState([]);
     const [rejectedFiles, setRejectedFiles] = useState([]);
 
     const { getRootProps, getInputProps } = useDropzone({
@@ -30,7 +31,6 @@ const DropZone = () => {
                     preview: URL.createObjectURL(file)
                 }))
             )
-
         }
     })
 
@@ -44,7 +44,6 @@ const DropZone = () => {
                 {errorFiles ?
                     <div className='dropArea'  >
                         <ModalError reset={() => setRejectedFiles([])} />
-
                     </div>
                     :
                     <div className='dropArea' {...getRootProps()} >
@@ -65,7 +64,6 @@ const DropZone = () => {
                         )}
 
                     </div>
-
                 }
 
                 <Stack gap={2}>

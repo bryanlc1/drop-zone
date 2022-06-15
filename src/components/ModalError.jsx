@@ -1,7 +1,7 @@
 import '../styles/ModalError.css'
-import {Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
-const ModalError = ({reset}) => {
+const ModalError = ({ reset }) => {
     return (
         <div className="modalError">
             <h4>Ups algo a ido mal </h4>
