@@ -23,16 +23,13 @@ const DropZone = () => {
                     url: URL.createObjectURL(file),
                 }))
             )
-            console.log(acceptedFiles)
         },
         onDropRejected: (rejectFiles) => {
-            console.log(rejectFiles)
             setRejectedFiles(
                 rejectFiles.map(({ file }) => Object.assign(file, {
                     preview: URL.createObjectURL(file)
                 }))
             )
-            console.log(rejectFiles)
 
         }
     })

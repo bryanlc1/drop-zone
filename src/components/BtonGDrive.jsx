@@ -8,9 +8,9 @@ const BtonGDrive = () => {
     const [openPicker, authResponse] = useDrivePicker(); 
     const {setFiles} = useDrop();
 
-    const key = import.meta.env.VITE_APP_KEY;
-    const developer = import.meta.env.VITE_APP_DEVELOPER;
-    
+    const key = import.meta.env.VITE_APP_CLIENTID;
+    const developer = import.meta.env.VITE_APP_DEVELOPERKEY;
+
     console.log(key,developer);
     const handleOpenDrive = () => {
         openPicker({
@@ -23,7 +23,6 @@ const BtonGDrive = () => {
             multiselect:true,
             callbackFunction: ({docs}) => {
                 setFiles(docs);
-                console.log(authResponse)
             },
         })
     }
