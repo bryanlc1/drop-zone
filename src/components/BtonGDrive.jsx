@@ -11,7 +11,6 @@ const BtonGDrive = () => {
     const key = import.meta.env.VITE_APP_CLIENTID;
     const developer = import.meta.env.VITE_APP_DEVELOPERKEY;
 
-    console.log(key,developer);
     const handleOpenDrive = () => {
         openPicker({
             clientId:key,
