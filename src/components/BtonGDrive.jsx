@@ -8,10 +8,14 @@ const BtonGDrive = () => {
     const [openPicker, authResponse] = useDrivePicker(); 
     const {setFiles} = useDrop();
 
+    const key = import.meta.env.VITE_APP_KEY;
+    const developer = import.meta.env.VITE_APP_DEVELOPER;
+    
+    console.log(key,developer);
     const handleOpenDrive = () => {
         openPicker({
-            clientId:'532686612730-eicmrp91dm9n90223fa16r4jvf914gm1.apps.googleusercontent.com',
-            developerKey:'AIzaSyDW8CouzaPL8VuqeXaMYRTZTTPr4MNzeR4',
+            clientId:key,
+            developerKey:developer,
             viewId: 'DOCS_IMAGES',
             showUploadView:true,
             showUploadFolders:true,
