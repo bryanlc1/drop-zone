@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
+
 import { useDropzone } from 'react-dropzone';
-import { Button, Row, Col } from 'react-bootstrap';
+import { Button, Row, Col, Stack } from 'react-bootstrap';
 import '../styles/DropZone.css'
+import useDrop from '../hooks/useDrop';
 import ModalError from './ModalError';
+import BtonGDrive from './BtonGDrive';
 
 const DropZone = () => {
-    const [files, setFiles] = useState([]);
+    const { Files, setFiles } = useDrop();
+    //const [files, setFiles] = useState([]);
     const [rejectedFiles, setRejectedFiles] = useState([]);
 
     const { getRootProps, getInputProps } = useDropzone({
@@ -16,7 +20,7 @@ const DropZone = () => {
         onDrop: (acceptedFiles) => {
             setFiles(
                 acceptedFiles.map(file => Object.assign(file, {
-                    preview: URL.createObjectURL(file)
+                    url: URL.createObjectURL(file),
                 }))
             )
             console.log(acceptedFiles)
@@ -33,8 +37,8 @@ const DropZone = () => {
         }
     })
 
-    const currentFiles = files?.length !== 0 && rejectedFiles?.length === 0;
-    const notCurrentFiles = files?.length === 0 && rejectedFiles?.length === 0;
+    const currentFiles = Files?.length !== 0 && rejectedFiles?.length === 0;
+    const notCurrentFiles = Files?.length === 0 && rejectedFiles?.length === 0;
     const errorFiles = rejectedFiles?.length !== 0
 
     return (
@@ -55,7 +59,7 @@ const DropZone = () => {
                             <>
                                 <p className="textDrop">
                                     Archivos,
-                                    {files.map(file => (
+                                    {Files?.map(file => (
                                         ` ${file.name}, `
                                     ))}
                                     subidos correctamente
@@ -67,12 +71,15 @@ const DropZone = () => {
 
                 }
 
-                <Button variant="success" {...getRootProps()}>
-                    <input
-                        {...getInputProps()}
-                    />
-                    Subir archivos
-                </Button>
+                <Stack gap={2}>
+                    <Button variant="success" {...getRootProps()}>
+                        <input
+                            {...getInputProps()}
+                        />
+                        Subir archivos
+                    </Button>
+                    <BtonGDrive />
+                </Stack>
             </Col>
         </>
     )
