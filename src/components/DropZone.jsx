@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { ToastContainer, toast } from 'react-toastify';
 
 import useDrop from '../hooks/useDrop';
 import ModalError from './ModalError';
@@ -31,8 +32,16 @@ const DropZone = () => {
                     preview: URL.createObjectURL(file)
                 }))
             )
-        }
+        },
     })
+
+    const sendFiles = () => {
+        Files.length > 0 
+        ? 
+        toast.success("Archivos subidos", { onClose: () => setFiles([]) }) 
+        :
+        toast.error("No hay archivos seleccionados")
+    }
 
     const currentFiles = Files?.length !== 0 && rejectedFiles?.length === 0;
     const notCurrentFiles = Files?.length === 0 && rejectedFiles?.length === 0;
@@ -40,6 +49,7 @@ const DropZone = () => {
 
     return (
         <>
+            <ToastContainer autoClose={1500} />
             <Col xs={{ order: 1 }} lg={{ order: 0 }} className='contDrop order-xs-last'>
                 {errorFiles ?
                     <div className='dropArea'  >
@@ -49,7 +59,7 @@ const DropZone = () => {
                     <div className='dropArea' {...getRootProps()} >
                         <input {...getInputProps()} />
 
-                        {notCurrentFiles && <p className="textDrop">Sube tus archivos</p>}
+                        {notCurrentFiles && <p className="textDrop">Toca o arrastra para subir archivos</p>}
 
                         {currentFiles && (
                             <>
@@ -67,10 +77,7 @@ const DropZone = () => {
                 }
 
                 <Stack gap={2}>
-                    <Button variant="success" {...getRootProps()}>
-                        <input
-                            {...getInputProps()}
-                        />
+                    <Button variant="success" onClick={() => sendFiles()}>
                         Subir archivos
                     </Button>
                     <BtonGDrive />
