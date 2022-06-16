@@ -18,6 +18,7 @@ Se a usado `react-dropzone` para la cargaa de archvivos locales y `react-google-
 Se a gestionado con **context** el estado del usuario.\
 Para estilarizar la pagina se ha usado **css**, las librerias de **bootstrap**, **React-icons**, **React-tostify**.
 
+[Aqui puede ver el Proyecto desplegado](https://drop-zone-weld.vercel.app/)
 
 
 

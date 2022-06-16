@@ -4,7 +4,7 @@ import useDrop from '../hooks/useDrop';
 import { FaGoogle } from "react-icons/fa";
 
 const BtonGDrive = () => {
-    const [openPicker, authResponse] = useDrivePicker();
+    const [openPicker] = useDrivePicker();
     const { setFiles } = useDrop();
 
     const key = import.meta.env.VITE_APP_CLIENTID;

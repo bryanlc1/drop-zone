@@ -9,7 +9,6 @@ import BtonGDrive from './BtonGDrive';
 import { Button, Col, Stack } from 'react-bootstrap';
 import '../styles/DropZone.css'
 
-
 const DropZone = () => {
     const { Files, setFiles } = useDrop();
     const [rejectedFiles, setRejectedFiles] = useState([]);

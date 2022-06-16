@@ -4,10 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css'
+import './index.css'
 import App from './App'
 import Login from './components/Login';
 import Register from './Pages/Register'
-import './index.css'
 import Home from './Pages/Home';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
