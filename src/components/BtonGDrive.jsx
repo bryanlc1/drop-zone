@@ -21,7 +21,6 @@ const BtonGDrive = () => {
             multiselect: true,
             callbackFunction: ({ docs }) => {
                 if (docs) {
-                    console.log(docs)
                     setFiles(docs);
                 }
             },
